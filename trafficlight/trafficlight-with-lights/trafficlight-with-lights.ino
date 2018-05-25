@@ -1,14 +1,26 @@
+const int BTN = 12;
 const int RED = 10;
 const int YELLOW = 9;
 const int GREEN = 8;
 
 void setup() {
+  pinMode(BTN, INPUT);
   pinMode(RED, OUTPUT);
   pinMode(YELLOW, OUTPUT);
   pinMode(GREEN, OUTPUT);
+  digitalWrite(GREEN, HIGH);
 }
 
 void loop() {
+  if (digitalRead(BTN) == HIGH){
+    delay(15); //software debounce
+    if(digitalRead(BTN)==HIGH){
+      //if the switch is HIGH, ie pushed down = change the lights
+      changeLights();
+      delay(15000);
+      //digitalWrite(BTN, LOW)
+    }  
+  }
   changeLights();
   delay(15000);
 }
